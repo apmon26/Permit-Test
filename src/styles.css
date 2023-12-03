@@ -33,17 +33,39 @@ body {
 .quiz-container .question-number{
   font-size: 24px;
   color: #fff;
+  font-weight: 600;
+  border-bottom: 1px solid #cccc;
+  padding-bottom: 10px;
   line-height: 28px;
 }
 
 .quiz-container .question-text{
   font-size: 22px;
   color: #fff;
+  line-height: 28px;
+  font-weight: 400;
+  padding: 20px 0;
+  margin: 0;
+
 
 }
 
 .quiz-container .options-container{
   font-size: 20px;
   color: #fff;
+
+}
+
+.quiz-container .options-container .option{
+  background-color: #fefcf6 ;
+  padding:15px;
+  font-size: 15px;
+  line-height: 22px;
+  color: black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+
 
 }
