@@ -22,8 +22,10 @@ body {
 }
 
 
-.main-button {
+main-button {
   background-color: #f4efe6;
+  max-width: 200px;
+  font-size: 30px;
 
 
 }
