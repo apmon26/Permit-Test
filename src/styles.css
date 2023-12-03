@@ -25,9 +25,10 @@ body {
 .main-button {
   padding:15px 45px;
   background-color: #f4efe6;
-  max-width: 200px;
-  font-size: 30px;
+  max-width: 40px;
+  font-size: 15px;
   border-radius : 10px;
+  
 
 
 }
