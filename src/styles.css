@@ -25,10 +25,25 @@ body {
 .main-button {
   padding:15px 45px;
   background-color: #f4efe6;
-  max-width: 40px;
   font-size: 15px;
   border-radius : 10px;
+
+}
+
+.quiz-container .question-number{
+  font-size: 24px;
+  color: #fff;
+  line-height: 28px;
+}
+
+.quiz-container .question-text{
+  font-size: 22px;
+  color: #fff;
+
+}
+
+.quiz-container .options-container{
+  font-size: 20px;
+  color: #fff;
   
-
-
 }
