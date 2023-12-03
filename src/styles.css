@@ -23,8 +23,12 @@ body {
 
 
 .main-button {
+  padding: 15px 45px;
   background-color: #f4efe6;
-  border-radius:10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 
 }
 
@@ -55,11 +59,10 @@ body {
 }
 
 .quiz-container .options-container .option{
-  background-color: #fefcf6 ;
   padding:15px;
   font-size: 15px;
   line-height: 22px;
-  color: black;
+  color: white;
   border-radius: 5px;
   margin-bottom: 10px;
   cursor: pointer;
