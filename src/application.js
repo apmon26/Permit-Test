@@ -25,6 +25,8 @@ function getNewQuestion(){
     const questionIndex = avaibleQuestions[Math.floor(Math.random() * avaibleQuestions.length())]; 
     currentQuestion = questionIndex;
     questionText.innerHTML = currentQuestion.q;
+
+    questionCounter++;
 }
 
 window.onload = function(){
