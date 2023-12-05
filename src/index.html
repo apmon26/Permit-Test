@@ -112,8 +112,6 @@ function setAvaibleQuestions(){
 },
 
 
-
-
 {
     question: "ONE OF THE PENALTIES FOR DRIVING UNDER THE INFLUENCE OF ALCOHOL IS A(N):",
     options: ["5 – year driver’s license suspension", "$100.00 fine", "Attendance to Alcohol Highway Safety School", "12 – hour sentence in jail" ],
@@ -220,7 +218,7 @@ function getNewQuestion() {
       let correctAnswers = 0;
       for (let i = 0; i < userAnswers.length; i++) {
         const currentQuestion = quiz[i];
-        if (userAnswers[i] === currentQuestion.correctIndex) {
+        if (userAnswers[i] === currentQuestion.answer) {
           correctAnswers++;
         }
       }
