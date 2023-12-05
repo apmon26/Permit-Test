@@ -36,6 +36,9 @@
 
 <div class="answers-indicator"></div>
 
+<div class="result-container"></div>
+
+
 </div>
 
 
@@ -60,6 +63,7 @@ let currentQuestion = 0;
 let avaibleQuestions = [];
 let avaibleContainers = [];
 let avaibleOptions = []; 
+let userAnswers = [];
 
 // push the questions into avaibleQuestions Array
 function setAvaibleQuestions(){
@@ -70,51 +74,69 @@ function setAvaibleQuestions(){
 
 }
 
+
+
 function getNewQuestion() {
-    questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
+questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
 
-    // get random question
-    const questionIndex = Math.floor(Math.random() * avaibleQuestions.length);
-    currentQuestion = avaibleQuestions[questionIndex];
-    questionText.innerHTML = currentQuestion.questionText; // Adjust this line based on your actual question structure
+// get random question
+const questionIndex = Math.floor(Math.random() * avaibleQuestions.length);
+currentQuestion = avaibleQuestions[questionIndex];
+questionText.innerHTML = currentQuestion.questionText; // Adjust this line based on your actual question structure
 
-    avaibleQuestions.splice(questionIndex, 1);
+avaibleQuestions.splice(questionIndex, 1);
 
-    avaibleOptions = []; // Reset avaibleOptions array
+avaibleOptions = []; // Reset avaibleOptions array
 
-    const optionLen = currentQuestion.options.length;
-    for (let i = 0; i < optionLen; i++) {
-        avaibleOptions.push(i);
-    }
-
-    // Clear existing options
-    optionContainer.innerHTML = '';
+const optionLen = currentQuestion.options.length;
 
     for (let i = 0; i < optionLen; i++) {
         const option = document.createElement('div');
         option.innerHTML = currentQuestion.options[i];
         option.id = i;
         option.className = "option";
+        option.addEventListener("click", function () {
+            userAnswers.push(i); // Store the user's answer
+            optionContainer.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+        });
         optionContainer.appendChild(option);
     }
     questionCounter++;
 }
 
-
-function next(){
-    if(questionCounter >= quiz.length) {
-        console.log("Quiz Over");
-    }
-    else{
+function next() {
+    if (questionCounter >= quiz.length) {
+        // Quiz is over, display result
+        displayResult();
+    } else {
         getNewQuestion();
     }
 }
 
-window.onload = function(){
-    setAvaibleQuestions();
+function displayResult() {
+    let correctAnswers = 0;
+    for (let i = 0; i < quiz.length; i++) {
+        if (userAnswers[i] === quiz[i].correctIndex) {
+            correctAnswers++;
+        }
+    }
 
+    // Display the result
+    const resultContainer = document.querySelector('.result-container');
+    resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
+    resultContainer.style.display = 'block';
+
+    // Hide the quiz container
+    const quizContainer = document.querySelector('.quiz-container');
+    quizContainer.style.display = 'none';
+}
+
+window.onload = function () {
+    setAvailableQuestions();
     getNewQuestion();
-} 
+}
+
 
 
 
