@@ -171,7 +171,7 @@ function getNewQuestion() {
         // Get random question
         const questionIndex = Math.floor(Math.random() * quiz.length);
         const currentQuestion = quiz[questionIndex];
-        questionText.innerHTML = currentQuestion.questionText;
+        questionText.innerHTML = currentQuestion.question;
   
         // Clear previous options
         optionContainer.innerHTML = "";
