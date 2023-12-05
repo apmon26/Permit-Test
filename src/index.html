@@ -67,79 +67,8 @@ let userAnswers = [];
 
 // push the questions into avaibleQuestions Array
 function setAvaibleQuestions(){
-    const totalQuestion = quiz.length;
-    for (let i = 0; i < totalQuestion; i++) {
-        avaibleQuestions.push(quiz[i])
-    }
 
-}
-
-function getNewQuestion() {
-questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
-
-// get random question
-const questionIndex = Math.floor(Math.random() * avaibleQuestions.length);
-currentQuestion = avaibleQuestions[questionIndex];
-questionText.innerHTML = currentQuestion.questionText;
-
-avaibleQuestions.splice(questionIndex, 1);
-
-avaibleOptions = []; // Reset avaibleOptions array
-
-const optionLen = currentQuestion.options.length;
-
-    for (let i = 0; i < optionLen; i++) {
-        const option = document.createElement('div');
-        option.innerHTML = currentQuestion.options[i];
-        option.id = i;
-        option.className = "option";
-        option.addEventListener("click", function () {
-            userAnswers.push(i); // Store the user's answer
-            optionContainer.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-            option.classList.add('selected');
-        });
-        optionContainer.appendChild(option);
-    }
-    questionCounter++;
-}
-
-function next() {
-    if (questionCounter >= quiz.length) {
-        // Quiz is over, display result
-        displayResult();
-    } else {
-        getNewQuestion();
-    }
-}
-
-function displayResult() {
-    let correctAnswers = 0;
-    for (let i = 0; i < quiz.length; i++) {
-        if (userAnswers[i] === quiz[i].correctIndex) {
-            correctAnswers++;
-        }
-    }
-
-    // Display the result
-    const resultContainer = document.querySelector('.result-container');
-    resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
-    resultContainer.style.display = 'block';
-
-    // Hide the quiz container
-    const quizContainer = document.querySelector('.quiz-container');
-    quizContainer.style.display = 'none';
-}
-
-window.onload = function () {
-    setAvaibleQuestions(); 
-    getNewQuestion();
-}
-
-
-
-
-
-const quiz = [ 
+  const quiz = [ 
 {
     question: "THE MINIMUM DRINKING AGE IN THIS STATE IS ____ YEARS.",
     options: ["9", "20", "21", "18" ],
@@ -241,9 +170,75 @@ const quiz = [
     answer: 2
 }
  
-]
-</script>
+];
+return quiz;
+}
 
+//    const totalQuestion = quiz.length;
+//    for (let i = 0; i < totalQuestion; i++) {
+//        avaibleQuestions.push(quiz[i])
+//    }
+
+function getNewQuestion() {
+      resultContainer.style.display = 'none'; // Hide result container
+      quizContainer.style.display = 'block'; // Show quiz container
+      questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
+  
+      if (questionCounter >= quiz.length) {
+        // Quiz is over, display result
+        displayResult();
+      } else {
+        // Get random question
+        const questionIndex = Math.floor(Math.random() * quiz.length);
+        const currentQuestion = quiz[questionIndex];
+        questionText.innerHTML = currentQuestion.questionText;
+  
+        // Clear previous options
+        optionContainer.innerHTML = "";
+  
+        // Display new options
+        currentQuestion.options.forEach((option, i) => {
+          const optionElement = document.createElement('div');
+          optionElement.innerHTML = option;
+          optionElement.className = "option";
+          optionElement.addEventListener("click", function () {
+            userAnswers.push(i); // Store the user's answer
+            optionContainer.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            optionElement.classList.add('selected');
+          });
+          optionContainer.appendChild(optionElement);
+        });
+  
+        // Remove the used question from the quiz array
+        quiz.splice(questionIndex, 1);
+  
+        questionCounter++;
+      }
+    }
+  
+    function displayResult() {
+      let correctAnswers = 0;
+      for (let i = 0; i < userAnswers.length; i++) {
+        const currentQuestion = quiz[i];
+        if (userAnswers[i] === currentQuestion.correctIndex) {
+          correctAnswers++;
+        }
+      }
+  
+      // Display the result
+      resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
+      resultContainer.style.display = 'block';
+  
+      // Hide the quiz container
+      quizContainer.style.display = 'none';
+    }
+  
+    window.onload = function () {
+      quiz = setAvailableQuestions(); // Set the available questions
+      questionCounter = 0;
+      getNewQuestion();
+    };
+  </script>
 
 
 </body>
