@@ -1,16 +1,17 @@
 const questionNumber = document.querySelector(".question-number");
 const questionText = document.querySelector(".question-text");
-const optionContainer = document.querySelector("option-container");
+const optionContainer = document.querySelector(".option-container");
 
 
 let questionCounter = 0;
 let currentQuestion = 0; 
 let avaibleQuestions = [];
+let avaibleContainers = [];
 
 // push the questions into avaibleQuestions Array
 function setAvaibleQuestions(){
     const totalQuestion = quiz.length;
-    for (let i = 0; i < totalQuestion;i++) {
+    for (let i = 0; i < totalQuestion; i++) {
         avaibleQuestions.push(quiz[i])
     }
 
@@ -30,8 +31,20 @@ function getNewQuestion(){
       //console.log(index1)
       //console.log(questionIndex)
       avaibleQuestions.splice(index1, 1);
-      console.log(questionIndex)
-      console.log(avaibleQuestions)
+    
+
+    const optionLen = currentQuestion.options.length;
+    for(let i =0;  i< optionLen ;  i++){
+        avaibleOptions.push(i)
+    }
+
+    for(let i=0; i<optionLen; i++) {
+        const option = document.createElement('div');
+        option.innerHTML = currentQuestion.options[i];
+        option.id = i;
+        option.className = "option";
+        optionContainer.appendChild(option)
+    }
     questionCounter++
 }
 
