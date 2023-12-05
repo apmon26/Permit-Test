@@ -181,6 +181,7 @@ function getNewQuestion() {
 currentQuestion.options.forEach((option, i) => {
   const optionElement = document.createElement('div');
   optionElement.innerHTML = options;
+  optionElement.className = "options";
   optionElement.addEventListener("click", function () {
     userAnswers.push(i); // Store the user's answer
     optionContainer.querySelectorAll('.options').forEach(opt => opt.classList.remove('selected'));
