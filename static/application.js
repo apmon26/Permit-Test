@@ -1,4 +1,5 @@
-app.use("/static", express.static('./static/'));
+// Serve static files from the 'static' folder
+app.use(express.static('./static/'));
 
 
 const questionNumber = document.querySelector(".question-number");
