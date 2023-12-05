@@ -70,37 +70,36 @@ function setAvaibleQuestions(){
 
 }
 
-function getNewQuestion(){
+function getNewQuestion() {
     questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
 
-    // set question text
     // get random question
+    const questionIndex = Math.floor(Math.random() * avaibleQuestions.length);
+    currentQuestion = avaibleQuestions[questionIndex];
+    questionText.innerHTML = currentQuestion.questionText; // Adjust this line based on your actual question structure
 
-    const questionIndex = avaibleQuestions[Math.floor(Math.random() * avaibleQuestions.length)]; 
-    currentQuestion = questionIndex;
-    questionText.innerHTML = currentQuestion.q;
+    avaibleQuestions.splice(questionIndex, 1);
 
-    const index1 = avaibleQuestions.indexOf(questionIndex);
-      //console.log(index1)
-      //console.log(questionIndex)
-      avaibleQuestions.splice(index1, 1);
-    
-    avaibleOptions = [];
+    avaibleOptions = []; // Reset avaibleOptions array
 
     const optionLen = currentQuestion.options.length;
-    for(let i =0;  i< optionLen ;  i++){
-        avaibleOptions.push(i)
+    for (let i = 0; i < optionLen; i++) {
+        avaibleOptions.push(i);
     }
 
-    for(let i=0; i<optionLen; i++) {
+    // Clear existing options
+    optionContainer.innerHTML = '';
+
+    for (let i = 0; i < optionLen; i++) {
         const option = document.createElement('div');
         option.innerHTML = currentQuestion.options[i];
         option.id = i;
         option.className = "option";
-        optionContainer.appendChild(option)
+        optionContainer.appendChild(option);
     }
-    questionCounter++
+    questionCounter++;
 }
+
 
 function next(){
     if(questionCounter >= quiz.length) {
