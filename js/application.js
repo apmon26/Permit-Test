@@ -27,8 +27,11 @@ function getNewQuestion(){
     questionText.innerHTML = currentQuestion.q;
 
     const index1 = avaibleQuestions.indexOf(questionIndex);
-      console.log(index1)
+      //console.log(index1)
+      //console.log(questionIndex)
+      avaibleQuestions.splice(index1, 1);
       console.log(questionIndex)
+      console.log(avaibleQuestions)
     questionCounter++
 }
 
