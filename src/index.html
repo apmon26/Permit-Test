@@ -74,15 +74,13 @@ function setAvaibleQuestions(){
 
 }
 
-
-
 function getNewQuestion() {
 questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
 
 // get random question
 const questionIndex = Math.floor(Math.random() * avaibleQuestions.length);
 currentQuestion = avaibleQuestions[questionIndex];
-questionText.innerHTML = currentQuestion.questionText; // Adjust this line based on your actual question structure
+questionText.innerHTML = currentQuestion.q;
 
 avaibleQuestions.splice(questionIndex, 1);
 
