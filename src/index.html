@@ -197,23 +197,26 @@ function getNewQuestion() {
   }
 }
 
-    function displayResult() {
-      let correctAnswers = 0;
-      for (let i = 0; i < userAnswers.length; i++) {
-        const currentQuestion = quiz[i];
-        if (userAnswers[i] === currentQuestion.answer) {
-          correctAnswers ++;
-        }
-      }
-  
-      // Display the result
-      resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
-      resultContainer.style.display = 'block';
-  
-      // Hide the quiz container
-      quizContainer.style.display = 'none';
+function displayResult() {
+  let correctAnswers = 0;
+
+  for (let i = 0; i < userAnswers.length; i++) {
+    const currentQuestion = quiz[i];
+
+    // Check if 'answer' property exists in the current question
+    if (currentQuestion && currentQuestion.hasOwnProperty('answer') && userAnswers[i] === currentQuestion.answer) {
+      correctAnswers++;
     }
-  
+  }
+
+  // Display the result
+  resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
+  resultContainer.style.display = 'block';
+
+  // Hide the quiz container
+  quizContainer.style.display = 'none';
+}
+
     window.onload = function () {
       quiz = setAvaibleQuestions(); // Set the available questions           
       questionCounter = 0;
