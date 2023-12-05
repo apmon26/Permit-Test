@@ -42,28 +42,19 @@
 </div>
 
 
-<!--<script src="/Users/avvphan/Documents/GitHub/Permit-Test/js/application.js"></script>
-<script src="/Users/avvphan/Documents/GitHub/Permit-Test/js/question.js"></script> 
-
-
-<script src="/static/application.js"></script>
-<script src="/static/question.js"></script>  --->
-
 
 <script>
 
+
+
 const questionNumber = document.querySelector(".question-number");
-const questionText = document.querySelector(".question-text");
-const optionContainer = document.querySelector(".options-container"); 
-
-
-
-let questionCounter = 0;
-let currentQuestion = 0; 
-let avaibleQuestions = [];
-let avaibleContainers = [];
-let avaibleOptions = []; 
-let userAnswers = [];
+    const questionText = document.querySelector(".question-text");
+    const optionContainer = document.querySelector(".options-container");
+    const resultContainer = document.querySelector('.result-container');
+    const quizContainer = document.querySelector('.quiz-container');
+  
+    let questionCounter = 0;
+    let userAnswers = [];
 
 // push the questions into avaibleQuestions Array
 function setAvaibleQuestions(){
@@ -232,8 +223,7 @@ function getNewQuestion() {
     }
   
     window.onload = function () {
-      quiz = setAvaibleQuestions(); // Set the available questions
-             
+      quiz = setAvaibleQuestions(); // Set the available questions           
       questionCounter = 0;
       getNewQuestion();
     };
