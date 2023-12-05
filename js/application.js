@@ -26,7 +26,19 @@ function getNewQuestion(){
     currentQuestion = questionIndex;
     questionText.innerHTML = currentQuestion.q;
 
-    questionCounter++;
+    const index1 = avaibleQuestions.indexOf(questionIndex);
+      console.log(index1)
+      console.log(questionIndex)
+    questionCounter++
+}
+
+function next(){
+    if(questionCounter >= quiz.length) {
+        console.log("Quiz Over");
+    }
+    else{
+        getNewQuestion();
+    }
 }
 
 window.onload = function(){
