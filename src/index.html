@@ -180,11 +180,11 @@ function getNewQuestion() {
 // Display new options
 currentQuestion.options.forEach((option, i) => {
   const optionElement = document.createElement('div');
-  optionElement.innerHTML = options;
-  optionElement.className = "options";
+  optionElement.innerHTML = option;
+  optionElement.className = "option";
   optionElement.addEventListener("click", function () {
     userAnswers.push(i); // Store the user's answer
-    optionContainer.querySelectorAll('.options').forEach(opt => opt.classList.remove('selected'));
+    optionContainer.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
     optionElement.classList.add('selected');
   });
   optionContainer.appendChild(optionElement);
