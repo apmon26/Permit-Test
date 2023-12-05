@@ -80,7 +80,7 @@ questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.l
 // get random question
 const questionIndex = Math.floor(Math.random() * avaibleQuestions.length);
 currentQuestion = avaibleQuestions[questionIndex];
-questionText.innerHTML = currentQuestion.q;
+questionText.innerHTML = currentQuestion.questionText;
 
 avaibleQuestions.splice(questionIndex, 1);
 
