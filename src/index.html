@@ -162,6 +162,7 @@ return quiz;
 function getNewQuestion() {
       resultContainer.style.display = 'none'; // Hide result container
       quizContainer.style.display = 'block'; // Show quiz container
+      quiz.length = 16; 
       questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
   
       if (questionCounter >= quiz.length) {
