@@ -177,18 +177,18 @@ function getNewQuestion() {
     // Clear previous options
     optionContainer.innerHTML = "";
 
-    // Display new options
-    currentQuestion.options.forEach((option, i) => {
-      const optionElement = document.createElement('div');
-      optionElement.innerHTML = option;
-      optionElement.className = "option";
-      optionElement.addEventListener("click", function () {
-        userAnswers.push(i); // Store the user's answer
-        optionContainer.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-        optionElement.classList.add('selected');
-      });
-      optionContainer.appendChild(optionElement);
-    });
+// Display new options
+currentQuestion.options.forEach((option, i) => {
+  const optionElement = document.createElement('div');
+  optionElement.innerHTML = options;
+  optionElement.addEventListener("click", function () {
+    userAnswers.push(i); // Store the user's answer
+    optionContainer.querySelectorAll('.options').forEach(opt => opt.classList.remove('selected'));
+    optionElement.classList.add('selected');
+  });
+  optionContainer.appendChild(optionElement);
+});
+
 
     // Remove the used question from the quiz array
     quiz.splice(questionIndex, 1);
