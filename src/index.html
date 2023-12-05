@@ -160,49 +160,48 @@ return quiz;
 //    }
 
 function getNewQuestion() {
-      resultContainer.style.display = 'none'; // Hide result container
-      quizContainer.style.display = 'block'; // Show quiz container
-      quiz.length = 16; 
-      questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
+  resultContainer.style.display = 'none'; // Hide result container
+  quizContainer.style.display = 'block'; // Show quiz container
   
-      if (questionCounter >= quiz.length) {
-        // Quiz is over, display result
-        displayResult();
-      } else {
-        // Get random question
-        const questionIndex = Math.floor(Math.random() * quiz.length);
-        const currentQuestion = quiz[questionIndex];
-        questionText.innerHTML = currentQuestion.question;
-  
-        // Clear previous options
-        optionContainer.innerHTML = "";
-  
-        // Display new options
-        currentQuestion.options.forEach((option, i) => {
-          const optionElement = document.createElement('div');
-          optionElement.innerHTML = option;
-          optionElement.className = "option";
-          optionElement.addEventListener("click", function () {
-            userAnswers.push(i); // Store the user's answer
-            optionContainer.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-            optionElement.classList.add('selected');
-          });
-          optionContainer.appendChild(optionElement);
-        });
-  
-        // Remove the used question from the quiz array
-        quiz.splice(questionIndex, 1);
-  
-        questionCounter++;
-      }
-    }
-  
+  // Check if all questions have been asked
+  if (questionCounter >= totalQuestions) {
+    // Quiz is over, display result
+    displayResult();
+  } else {
+    // Get random question
+    const questionIndex = Math.floor(Math.random() * quiz.length);
+    const currentQuestion = quiz[questionIndex];
+    questionText.innerHTML = currentQuestion.question;
+
+    // Clear previous options
+    optionContainer.innerHTML = "";
+
+    // Display new options
+    currentQuestion.options.forEach((option, i) => {
+      const optionElement = document.createElement('div');
+      optionElement.innerHTML = option;
+      optionElement.className = "option";
+      optionElement.addEventListener("click", function () {
+        userAnswers.push(i); // Store the user's answer
+        optionContainer.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+        optionElement.classList.add('selected');
+      });
+      optionContainer.appendChild(optionElement);
+    });
+
+    // Remove the used question from the quiz array
+    quiz.splice(questionIndex, 1);
+
+    questionCounter++;
+  }
+}
+
     function displayResult() {
       let correctAnswers = 0;
       for (let i = 0; i < userAnswers.length; i++) {
         const currentQuestion = quiz[i];
         if (userAnswers[i] === currentQuestion.answer) {
-          correctAnswers++;
+          correctAnswers ++;
         }
       }
   
