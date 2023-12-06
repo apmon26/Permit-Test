@@ -43,7 +43,7 @@
       let totalQuestions = 16;
       let currentQuestion;
       let quiz;
-      let getNewQuestion;
+
 
       function setAvailableQuestions() {
         const quiz = [
@@ -149,11 +149,11 @@
         return quiz;
       }
 
-      function getNewQuestion() {
-        resultContainer.style.display = 'none';
-        quizContainer.style.display = 'block';
+function getNewQuestion() {
+  resultContainer.style.display = 'none';
+  quizContainer.style.display = 'block';
 
-        if (questionCounter >= totalQuestions) {
+  if (questionCounter >= totalQuestions) {
           displayResult();
         } else {
           const questionIndex = Math.floor(Math.random() * quiz.length);
@@ -176,7 +176,7 @@
         }
       }
 
-      function displayResult() {
+function displayResult() {
         let correctAnswers = 0;
 
         for (let i = 0; i < userAnswers.length; i++) {
