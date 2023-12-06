@@ -31,7 +31,6 @@
   </div>
 
 <script>
-    window.onload = function () {
       const questionNumber = document.querySelector(".question-number");
       const questionText = document.querySelector(".question-text");
       const optionContainer = document.querySelector(".options-container");
@@ -191,6 +190,7 @@
         quizContainer.style.display = 'none';
       }
 
+      window.onload = function () {
       quiz = setAvailableQuestions();
       // getNewQuestion(); // Commented this line, as you don't want to automatically load a question on page load
     };
