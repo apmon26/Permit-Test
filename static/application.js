@@ -11,6 +11,7 @@ let questionCounter = 0;
 let currentQuestion = 0; 
 let avaibleQuestions = [];
 let avaibleContainers = [];
+let getNewQuestion;
 
 // push the questions into avaibleQuestions Array
 function setAvaibleQuestions(){
