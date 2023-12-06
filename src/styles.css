@@ -86,8 +86,10 @@ body {
   background: #cccc;
   border-radius: 50%;
 }
-
-.quiz-box .options-container .option-correct:: before{
+.quiz-box .option-container .option.correct{
+  color: #fff;
+}
+.quiz-box .options-container .option-correct::before{
   content: "";
   position: absolute;
   left: 0;
@@ -107,4 +109,21 @@ body {
 
   100%{
     transform: translateX(-100%)
+  }
+}
+
+  .quiz-box .option-container .option.wrong{
+    color: #fff;
+  }
+  .quiz-box .options-container .option-wrong::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    z-index: -1;
+    animation: slideInLeft .5s ease forwards ;
+  
   }
