@@ -171,32 +171,28 @@ function getNewQuestion() {
             optionElement.addEventListener("click", function () {
               userAnswers.push(i);
               questionCounter++;
-              getNewQuestion();
+              evaluateAnswer(i);
             });
             optionContainer.appendChild(optionElement);
           });
         }
       }
+
       function evaluateAnswer(selectedOption) {
-        // Display the correct answer in green
         optionContainer.children[currentQuestion.answer].style.backgroundColor = 'green';
 
-        // Check if the selected option is correct
         if (selectedOption === currentQuestion.answer) {
           optionContainer.children[selectedOption].style.backgroundColor = 'green';
         } else {
-          // If the selected option is incorrect, turn it red
           optionContainer.children[selectedOption].style.backgroundColor = 'red';
         }
 
-        // Wait for a moment to show the user the result
         setTimeout(() => {
           getNewQuestion();
         }, 1000);
       }
 
-      
-function displayResult() {
+      function displayResult() {
         let correctAnswers = 0;
 
         for (let i = 0; i < userAnswers.length; i++) {
