@@ -203,50 +203,65 @@ currentQuestion.options.forEach((option, i) => {
 
 // get the result of current attempt
 
-function getResult(element) {
-  const id = parseInt(element.id);
+function getNewQuestion() {
+      resultContainer.style.display = 'none'; // Hide result container
+      quizContainer.style.display = 'block'; // Show quiz container
 
-  if (currentQuestion && typeof currentQuestion.answer !== 'undefined') {
-    if (id === currentQuestion.answer) {
-      element.classList.add('correct');
-    } else {
-      element.classList.add('wrong');
+      // Check if all questions have been asked
+      if (questionCounter >= totalQuestions) {
+        // Quiz is over, display result
+        displayResult();
+      } else {
+        // Get random question
+        const questionIndex = Math.floor(Math.random() * quiz.length);
+        currentQuestion = quiz[questionIndex];
+        questionText.innerHTML = currentQuestion.question;
+
+        // Clear previous options
+        optionContainer.innerHTML = "";
+
+        // Display new options
+        currentQuestion.options.forEach((option, i) => {
+          const optionElement = document.createElement('div');
+          optionElement.innerHTML = option;
+          optionElement.className = "option";
+          optionElement.addEventListener("click", function () {
+            userAnswers.push(i); // Store the user's answer
+            optionContainer.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            optionElement.classList.add('selected');
+          });
+          optionContainer.appendChild(optionElement);
+        });
+
+        questionCounter++;
+      }
     }
-  } else {
-    console.error("currentQuestion or currentQuestion.answer is undefined. Check your code logic.");
-  }
-}
 
+    function displayResult() {
+      let correctAnswers = 0;
 
+      for (let i = 0; i < userAnswers.length; i++) {
+        const currentQuestion = quiz[i];
 
-function displayResult() {
-  let correctAnswers = 0;
+        // Check if 'answer' property exists in the current question
+        if (currentQuestion && currentQuestion.hasOwnProperty('answer') && userAnswers[i] === currentQuestion.answer) {
+          correctAnswers++;
+        }
+      }
 
-  for (let i = 0; i < userAnswers.length; i++) {
-    const currentQuestion = quiz[i];
+      // Display the result
+      resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
+      resultContainer.style.display = 'block';
 
-    // Check if 'answer' property exists in the current question
-    if (currentQuestion && currentQuestion.hasOwnProperty('answer') && userAnswers[i] === currentQuestion.answer) {
-      correctAnswers++;
+      // Hide the quiz container
+      quizContainer.style.display = 'none';
     }
-  }
-
-  // Display the result
-  resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
-  resultContainer.style.display = 'block';
-
-  // Hide the quiz container
-  quizContainer.style.display = 'none';
-}
 
     window.onload = function () {
-      quiz = setAvaibleQuestions(); // Set the available questions           
+      quiz = setAvailableQuestions(); // Set the available questions           
       questionCounter = 0;
-      getNewQuestion();
     };
   </script>
-
-
 </body>
 
 </html>
