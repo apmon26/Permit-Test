@@ -170,12 +170,13 @@ function getNewQuestion() {
             optionElement.className = "option";
             optionElement.addEventListener("click", function () {
               userAnswers.push(i);
+              questionCounter++;
+              getNewQuestion();
             });
             optionContainer.appendChild(optionElement);
           });
         }
       }
-
 
       function displayResult() {
         let correctAnswers = 0;
@@ -194,9 +195,9 @@ function getNewQuestion() {
       }
 
       quiz = setAvailableQuestions();
+      // getNewQuestion(); // Commented this line, as you don't want to automatically load a question on page load
     };
   </script>
 
-</body>
-
+  </body>
 </html>
