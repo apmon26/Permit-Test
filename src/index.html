@@ -176,28 +176,6 @@ function getNewQuestion() {
         }
       }
 
-      function evaluateAnswer() {
-        if (questionCounter >= totalQuestions) {
-          displayResult();
-        } else {
-          const selectedOption = document.querySelector(".option.selected");
-          if (selectedOption) {
-            const selectedOptionIndex = Array.from(optionContainer.children).indexOf(selectedOption);
-            optionContainer.children[currentQuestion.answer].style.backgroundColor = 'green';
-
-            if (selectedOptionIndex === currentQuestion.answer) {
-              selectedOption.style.backgroundColor = 'green';
-            } else {
-              selectedOption.style.backgroundColor = 'red';
-            }
-
-            questionCounter++;
-            setTimeout(getNewQuestion, 1000);
-          } else {
-            alert("Please select an option");
-          }
-        }
-      }
 
       function displayResult() {
         let correctAnswers = 0;
