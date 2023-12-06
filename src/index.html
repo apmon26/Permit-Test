@@ -163,14 +163,24 @@
       optionContainer.innerHTML = "";
 
       currentQuestion.options.forEach((option, i) => {
-        const optionElement = document.createElement('div');
-        optionElement.innerHTML = option;
-        optionElement.className = "option";
-        optionElement.addEventListener("click", function () {
-          userAnswers.push(i);
-          questionCounter++;
-          getNewQuestion();
-        });
+      const optionElement = document.createElement('div');
+      optionElement.innerHTML = option;
+      optionElement.className = "option";
+      optionElement.addEventListener("click", function () {
+        const isCorrect = i === currentQuestion.answer;
+
+        if (isCorrect) {
+          optionElement.classList.add("correct");
+        } else {
+          optionElement.classList.add("incorrect");
+          // Highlight the correct answer
+          optionContainer.children[currentQuestion.answer].classList.add("correct");
+        }
+
+        userAnswers.push({ index: i, isCorrect });
+        questionCounter++;
+        setTimeout(getNewQuestion, 1000); // Delay to show correct/incorrect feedback
+      });
         optionContainer.appendChild(optionElement);
       });
     }
