@@ -41,6 +41,7 @@
     let userAnswers = [];
     let totalQuestions = 16;
     let currentQuestion;
+    let quiz;
 
     function setAvailableQuestions() {
       const quiz = [ 
@@ -166,15 +167,13 @@ function getNewQuestion() {
       optionElement.className = "option";
       optionElement.addEventListener("click", function () {
         userAnswers.push(i);
-        displayResult(); // Display the result after the user selects an option
+        questionCounter++;
+        getNewQuestion(); // Call getNewQuestion to move to the next question
       });
       optionContainer.appendChild(optionElement);
     });
-
-    questionCounter++;
   }
 }
-
 
 function displayResult() {
   let correctAnswers = 0;
@@ -194,11 +193,5 @@ function displayResult() {
 
 window.onload = function () {
   quiz = setAvailableQuestions();
-  questionCounter = 0;
   getNewQuestion();
 };
-
-</script>
-</body>
-
-</html>
