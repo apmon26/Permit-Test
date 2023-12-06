@@ -167,7 +167,7 @@
       const optionElement = document.createElement('div');
       optionElement.innerHTML = option;
       optionElement.className = "option";
-      optionElement.addEventListener("click", function selectAnswer () {
+      optionElement.addEventListener("click", function () {
 
       const isCorrect = i === currentQuestion.answer;
 
@@ -182,10 +182,14 @@
         userAnswers.push({ index: i, isCorrect });
         questionCounter++;
 
-        
-        optionContainer.querySelectorAll(".option").forEach((opt) => {
-          opt.removeEventListener("click", selectAnswer);
-        });
+// Highlight correct answer even if the user selected the wrong one
+optionContainer.children[currentQuestion.answer].classList.add("correct");
+
+// Remove event listeners to prevent further interaction
+optionContainer.querySelectorAll(".option").forEach((opt) => {
+  opt.style.pointerEvents = "none"; // Disable further clicks
+});
+
 
         setTimeout(getNewQuestion); 
       });
