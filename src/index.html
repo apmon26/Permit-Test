@@ -166,16 +166,7 @@ function getNewQuestion() {
       optionElement.className = "option";
       optionElement.addEventListener("click", function () {
         userAnswers.push(i);
-
-        // Check the user's answer against the correct answer
-        if (currentQuestion && currentQuestion.hasOwnProperty('answer') && userAnswers[questionCounter - 1] === currentQuestion.answer) {
-          resultContainer.innerHTML = "Correct!";
-        } else {
-          resultContainer.innerHTML = "Incorrect!";
-        }
-
-        resultContainer.style.display = 'block';
-        quizContainer.style.display = 'none';
+        displayResult(); // Display the result after the user selects an option
       });
       optionContainer.appendChild(optionElement);
     });
@@ -183,6 +174,7 @@ function getNewQuestion() {
     questionCounter++;
   }
 }
+
 
 function displayResult() {
   let correctAnswers = 0;
