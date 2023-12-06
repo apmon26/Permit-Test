@@ -12,7 +12,7 @@
 
   <div class="home-box custom-box">
     <h4>Instruction</h4>
-    <p> Total number of questions: <span class="total-question"> 16 </span> </p>
+    <p>Total number of questions: <span class="total-question"> 16 </span> </p>
     <button type="button" class="main-button" onclick="getNewQuestion()">Get Started!</button>
   </div>
   <div class="quiz-container custom-box">
@@ -44,11 +44,9 @@
       let currentQuestion;
       let quiz;
 
-
-
-    function setAvailableQuestions() {
-      const quiz = [ 
-{
+      function setAvailableQuestions() {
+        const quiz = [
+        {
     question: "THE MINIMUM DRINKING AGE IN THIS STATE IS ____ YEARS.",
     options: ["9", "20", "21", "18" ],
     answer: 2
@@ -146,12 +144,11 @@
     options: ["Unbuckle your seat belt and lower your window", "Get your paperwork ready before the officer reaches your car", "Stay in your vehicle with your hands on the steering wheel, and wait for the officer to approach you", "Get out of your car and walk toward the patrol car" ],
     answer: 2
 }
- 
-];
-return quiz;
-}
+        ];
+        return quiz;
+      }
 
-function getNewQuestion() {
+      function getNewQuestion() {
         resultContainer.style.display = 'none';
         quizContainer.style.display = 'block';
 
@@ -199,5 +196,6 @@ function getNewQuestion() {
     };
   </script>
 
-  </body>
+</body>
+
 </html>
