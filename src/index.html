@@ -205,7 +205,7 @@ currentQuestion.options.forEach((option, i) => {
 function getResult(element){
   const id = parseInt(element.id);
 
-  if (id === currentQuestionCounter.answer){
+  if (id === currentQuestion.answer){
 
     element.classList.add('correct');
 
