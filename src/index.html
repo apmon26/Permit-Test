@@ -163,10 +163,11 @@
       optionContainer.innerHTML = "";
 
       currentQuestion.options.forEach((option, i) => {
+
       const optionElement = document.createElement('div');
       optionElement.innerHTML = option;
       optionElement.className = "option";
-      optionElement.addEventListener("click", function () {
+      optionElement.addEventListener("click", function selectAnswer () {
 
       const isCorrect = i === currentQuestion.answer;
 
@@ -180,6 +181,12 @@
 
         userAnswers.push({ index: i, isCorrect });
         questionCounter++;
+
+        
+        optionContainer.querySelectorAll(".option").forEach((opt) => {
+          opt.removeEventListener("click", selectAnswer);
+        });
+
         setTimeout(getNewQuestion); 
       });
         optionContainer.appendChild(optionElement);
