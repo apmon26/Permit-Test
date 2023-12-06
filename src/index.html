@@ -203,19 +203,18 @@ currentQuestion.options.forEach((option, i) => {
 
 // get the result of current attempt
 
-function getResult(element){
+function getResult(element) {
   const id = parseInt(element.id);
 
-  if (id === currentQuestion.answer){
-
-    element.classList.add('correct');
-
+  if (currentQuestion && typeof currentQuestion.answer !== 'undefined') {
+    if (id === currentQuestion.answer) {
+      element.classList.add('correct');
+    } else {
+      element.classList.add('wrong');
+    }
+  } else {
+    console.error("currentQuestion or currentQuestion.answer is undefined. Check your code logic.");
   }
-  else{
-    element.classList.add("wrong");
-  }
-
-
 }
 
 
