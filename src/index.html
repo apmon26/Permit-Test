@@ -179,7 +179,7 @@
 
         userAnswers.push({ index: i, isCorrect });
         questionCounter++;
-        setTimeout(getNewQuestion, 1000); // Delay to show correct/incorrect feedback
+        setTimeout(getNewQuestion); // Delay to show correct/incorrect feedback
       });
         optionContainer.appendChild(optionElement);
       });
