@@ -31,7 +31,7 @@
   </div>
 
 <script>
-      window.onload = function () {
+      //window.onload = function () {
       const questionNumber = document.querySelector(".question-number");
       const questionText = document.querySelector(".question-text");
       const optionContainer = document.querySelector(".options-container");
@@ -148,54 +148,54 @@
         ];
         return quiz;
       }
+  // Move getNewQuestion to the global scope
+  function getNewQuestion() {
+    resultContainer.style.display = 'none';
+    quizContainer.style.display = 'block';
 
-function getNewQuestion() {
-  resultContainer.style.display = 'none';
-  quizContainer.style.display = 'block';
+    if (questionCounter >= totalQuestions) {
+      displayResult();
+    } else {
+      const questionIndex = Math.floor(Math.random() * quiz.length);
+      currentQuestion = quiz[questionIndex];
+      questionText.innerHTML = currentQuestion.question;
 
-  if (questionCounter >= totalQuestions) {
-          displayResult();
-        } else {
-          const questionIndex = Math.floor(Math.random() * quiz.length);
-          currentQuestion = quiz[questionIndex];
-          questionText.innerHTML = currentQuestion.question;
+      optionContainer.innerHTML = "";
 
-          optionContainer.innerHTML = "";
+      currentQuestion.options.forEach((option, i) => {
+        const optionElement = document.createElement('div');
+        optionElement.innerHTML = option;
+        optionElement.className = "option";
+        optionElement.addEventListener("click", function () {
+          userAnswers.push(i);
+          questionCounter++;
+          getNewQuestion();
+        });
+        optionContainer.appendChild(optionElement);
+      });
+    }
+  }
 
-          currentQuestion.options.forEach((option, i) => {
-            const optionElement = document.createElement('div');
-            optionElement.innerHTML = option;
-            optionElement.className = "option";
-            optionElement.addEventListener("click", function () {
-              userAnswers.push(i);
-              questionCounter++;
-              getNewQuestion();
-            });
-            optionContainer.appendChild(optionElement);
-          });
-        }
+  function displayResult() {
+    let correctAnswers = 0;
+
+    for (let i = 0; i < userAnswers.length; i++) {
+      const currentQuestion = quiz[i];
+
+      if (currentQuestion && currentQuestion.hasOwnProperty('answer') && userAnswers[i] === currentQuestion.answer) {
+        correctAnswers++;
       }
+    }
 
-function displayResult() {
-        let correctAnswers = 0;
+    resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
+    resultContainer.style.display = 'block';
+    quizContainer.style.display = 'none';
+  }
 
-        for (let i = 0; i < userAnswers.length; i++) {
-          const currentQuestion = quiz[i];
-
-          if (currentQuestion && currentQuestion.hasOwnProperty('answer') && userAnswers[i] === currentQuestion.answer) {
-            correctAnswers++;
-          }
-        }
-
-        resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
-        resultContainer.style.display = 'block';
-        quizContainer.style.display = 'none';
-      }
-
-
-      quiz = setAvailableQuestions();
-      // getNewQuestion(); // Commented this line, as you don't want to automatically load a question on page load
-    };
+  window.onload = function () {
+    quiz = setAvailableQuestions();
+    // getNewQuestion(); // Commented this line, as you don't want to automatically load a question on page load
+  };
 </script>
 
 </body>
