@@ -167,7 +167,8 @@
       optionElement.innerHTML = option;
       optionElement.className = "option";
       optionElement.addEventListener("click", function () {
-        const isCorrect = i === currentQuestion.answer;
+
+      const isCorrect = i === currentQuestion.answer;
 
         if (isCorrect) {
           optionElement.classList.add("correct");
@@ -179,7 +180,7 @@
 
         userAnswers.push({ index: i, isCorrect });
         questionCounter++;
-        setTimeout(getNewQuestion); // Delay to show correct/incorrect feedback
+        setTimeout(getNewQuestion); 
       });
         optionContainer.appendChild(optionElement);
       });
