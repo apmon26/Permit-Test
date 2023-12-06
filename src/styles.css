@@ -71,4 +71,40 @@ body {
 
 
 }
+.quiz-box .button{
+  margin:15px 0;
+}
 
+.quiz-box .answer-indicator{
+  border-top: 1px solid #cccc;
+}
+
+.quiz-box .answer-indicator div{
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  background: #cccc;
+  border-radius: 50%;
+}
+
+.quiz-box .options-container .option-correct:: before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: green;
+  z-index: -1;
+  animation: slideInLeft .5s ease forwards ;
+
+}
+
+@keyframes slideInLeft {
+  0%{
+    transform: translateX(-100%)
+  }
+
+  100%{
+    transform: translateX(-100%)
+  }

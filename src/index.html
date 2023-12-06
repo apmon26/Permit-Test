@@ -198,6 +198,23 @@ currentQuestion.options.forEach((option, i) => {
   }
 }
 
+// get the result of current attempt
+
+function getResult(element){
+  const id = parseInt(element.id);
+
+  if (id === currentQuestionCounter.answer){
+
+    element.classList.add('correct');
+
+  }
+  else{
+    console.log("Answer is wro")
+  }
+
+
+}
+
 function displayResult() {
   let correctAnswers = 0;
 
