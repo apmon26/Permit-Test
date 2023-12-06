@@ -31,17 +31,20 @@
   </div>
 
   <script>
-    const questionNumber = document.querySelector(".question-number");
-    const questionText = document.querySelector(".question-text");
-    const optionContainer = document.querySelector(".options-container");
-    const resultContainer = document.querySelector('.result-container');
-    const quizContainer = document.querySelector('.quiz-container');
+    window.onload = function () {
+      const questionNumber = document.querySelector(".question-number");
+      const questionText = document.querySelector(".question-text");
+      const optionContainer = document.querySelector(".options-container");
+      const resultContainer = document.querySelector('.result-container');
+      const quizContainer = document.querySelector('.quiz-container');
 
-    let questionCounter = 0;
-    let userAnswers = [];
-    let totalQuestions = 16;
-    let currentQuestion;
-    let quiz;
+      let questionCounter = 0;
+      let userAnswers = [];
+      let totalQuestions = 16;
+      let currentQuestion;
+      let quiz;
+
+
 
     function setAvailableQuestions() {
       const quiz = [ 
@@ -149,54 +152,52 @@ return quiz;
 }
 
 function getNewQuestion() {
-  resultContainer.style.display = 'none';
-  quizContainer.style.display = 'block';
+        resultContainer.style.display = 'none';
+        quizContainer.style.display = 'block';
 
-  if (questionCounter >= totalQuestions) {
-    displayResult();
-  } else {
-    const questionIndex = Math.floor(Math.random() * quiz.length);
-    currentQuestion = quiz[questionIndex];
-    questionText.innerHTML = currentQuestion.question;
+        if (questionCounter >= totalQuestions) {
+          displayResult();
+        } else {
+          const questionIndex = Math.floor(Math.random() * quiz.length);
+          currentQuestion = quiz[questionIndex];
+          questionText.innerHTML = currentQuestion.question;
 
-    optionContainer.innerHTML = "";
+          optionContainer.innerHTML = "";
 
-    currentQuestion.options.forEach((option, i) => {
-      const optionElement = document.createElement('div');
-      optionElement.innerHTML = option;
-      optionElement.className = "option";
-      optionElement.addEventListener("click", function () {
-        userAnswers.push(i);
-        questionCounter++;
-        getNewQuestion(); // Call getNewQuestion to move to the next question
-      });
-      optionContainer.appendChild(optionElement);
-    });
-  }
-}
+          currentQuestion.options.forEach((option, i) => {
+            const optionElement = document.createElement('div');
+            optionElement.innerHTML = option;
+            optionElement.className = "option";
+            optionElement.addEventListener("click", function () {
+              userAnswers.push(i);
+              questionCounter++;
+              getNewQuestion();
+            });
+            optionContainer.appendChild(optionElement);
+          });
+        }
+      }
 
-function displayResult() {
-  let correctAnswers = 0;
+      function displayResult() {
+        let correctAnswers = 0;
 
-  for (let i = 0; i < userAnswers.length; i++) {
-    const currentQuestion = quiz[i];
+        for (let i = 0; i < userAnswers.length; i++) {
+          const currentQuestion = quiz[i];
 
-    if (currentQuestion && currentQuestion.hasOwnProperty('answer') && userAnswers[i] === currentQuestion.answer) {
-      correctAnswers++;
-    }
-  }
+          if (currentQuestion && currentQuestion.hasOwnProperty('answer') && userAnswers[i] === currentQuestion.answer) {
+            correctAnswers++;
+          }
+        }
 
-  resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
-  resultContainer.style.display = 'block';
-  quizContainer.style.display = 'none';
-}
+        resultContainer.innerHTML = `You answered ${correctAnswers} out of ${quiz.length} questions correctly.`;
+        resultContainer.style.display = 'block';
+        quizContainer.style.display = 'none';
+      }
 
-window.onload = function () {
-  quiz = setAvailableQuestions();
-  getNewQuestion();
-};
-
-</script>
+      quiz = setAvailableQuestions();
+      // getNewQuestion(); // Commented this line, as you don't want to automatically load a question on page load
+    };
+  </script>
 
 </body>
 
