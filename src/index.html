@@ -170,26 +170,33 @@ function getNewQuestion() {
             optionElement.className = "option";
             optionElement.addEventListener("click", function () {
               userAnswers.push(i);
-              questionCounter++;
-              evaluateAnswer(i);
             });
             optionContainer.appendChild(optionElement);
           });
         }
       }
 
-      function evaluateAnswer(selectedOption) {
-        optionContainer.children[currentQuestion.answer].style.backgroundColor = 'green';
-
-        if (selectedOption === currentQuestion.answer) {
-          optionContainer.children[selectedOption].style.backgroundColor = 'green';
+      function evaluateAnswer() {
+        if (questionCounter >= totalQuestions) {
+          displayResult();
         } else {
-          optionContainer.children[selectedOption].style.backgroundColor = 'red';
-        }
+          const selectedOption = document.querySelector(".option.selected");
+          if (selectedOption) {
+            const selectedOptionIndex = Array.from(optionContainer.children).indexOf(selectedOption);
+            optionContainer.children[currentQuestion.answer].style.backgroundColor = 'green';
 
-        setTimeout(() => {
-          getNewQuestion();
-        }, 1000);
+            if (selectedOptionIndex === currentQuestion.answer) {
+              selectedOption.style.backgroundColor = 'green';
+            } else {
+              selectedOption.style.backgroundColor = 'red';
+            }
+
+            questionCounter++;
+            setTimeout(getNewQuestion, 1000);
+          } else {
+            alert("Please select an option");
+          }
+        }
       }
 
       function displayResult() {
@@ -209,7 +216,6 @@ function getNewQuestion() {
       }
 
       quiz = setAvailableQuestions();
-      // getNewQuestion(); // Commented this line, as you don't want to automatically load a question on page load
     };
   </script>
 
